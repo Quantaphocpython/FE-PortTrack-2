@@ -12,7 +12,7 @@ export default function HeroSection() {
       <h1
         className={`text-2xl sm:text-2xl md:text-3xl lg:text-5xl scroll-m-20 font-semibold tracking-tight text-center max-w-[1120px] bg-gradient-to-b dark:text-white`}
       >
-        Setup Payments For Your Container Ship In 5 Minutes
+        Container Tracking and Shipment Visibility Platform
       </h1>
       <p className="text-sm mx-auto max-w-[700px] text-gray-500 text-center mt-2 dark:text-gray-400">
         Focus on what really matters: serving your Container Ship, not the
