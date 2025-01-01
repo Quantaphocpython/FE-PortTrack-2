@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <main className="min-h-screen bg-background">
             <div className="container mx-auto px-4 py-16">
-                    
+
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
                     <Link href="/journey-recording" className="block">
                         <Button variant="outline" className="w-full h-40 flex flex-col gap-4">
