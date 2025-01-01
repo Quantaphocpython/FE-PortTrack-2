@@ -13,7 +13,7 @@ export default function HomeLayout({
     <>
       <AOSInit />
       <Header />
-      <div className="mt-24">{children}</div>
+      {children}
       <Footer />
     </>
   );
