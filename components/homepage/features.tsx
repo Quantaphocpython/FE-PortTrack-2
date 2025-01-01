@@ -74,10 +74,16 @@ export function Features() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            4 Reasons why to choose
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-yellow-600">
+              4 Reasons
+            </span>{" "}
+            why to choose
             <br />
-            our services
+            our{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
+              services
+            </span>
           </h2>
         </motion.div>
 
