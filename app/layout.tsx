@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/provider";
 import TopLoader from "@/components/top-loader";
 import { Toaster } from "@/components/ui/sonner";
+import ScrollProgress from "@/components/ui/scroll-progress";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <Providers>
           <TopLoader />
+          <ScrollProgress />
           {children}
           <Toaster />
         </Providers>
