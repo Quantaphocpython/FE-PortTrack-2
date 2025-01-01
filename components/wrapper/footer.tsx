@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CustomDock } from "./custome-dock";
+import { CustomDock } from "../custome-dock";
 
 const footerLinks = {
   solutions: [
