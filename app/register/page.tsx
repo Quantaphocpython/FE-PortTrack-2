@@ -91,8 +91,6 @@ export default function ShipRegistration() {
           "The ship information has been recorded on the blockchain.",
       });
 
-      console.log("Toast was called");
-
       // Reset form
       setFormData({
         shipName: "",
