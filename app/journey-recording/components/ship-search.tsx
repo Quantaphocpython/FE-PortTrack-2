@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Ship } from '@/types';
 import { useState } from 'react';
-import { mockShips } from '@/app/mock/data';
 import {
   ShipWheel,
   Waves,
@@ -20,6 +19,7 @@ import {
   Database,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { mockShips } from '@/lib/mock/data';
 
 export function ShipSearch() {
   const [shipCode, setShipCode] = useState('');

@@ -11,8 +11,8 @@ import {
   Layers,
   Clock,
 } from 'lucide-react';
-import { mockPorts } from '@/app/mock/data';
 import { Port } from '@/types';
+import { mockPorts } from '@/lib/mock/data';
 
 export function PortDetails() {
   const [selectedPort, setSelectedPort] = useState<Port | null>(mockPorts[0]);

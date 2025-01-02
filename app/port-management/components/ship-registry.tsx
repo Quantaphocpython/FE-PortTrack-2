@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Ship,
   Code,
   Globe,
   CheckCircle,
   XCircle,
-  MoreHorizontal
-} from "lucide-react";
-import { mockShips } from "@/app/mock/data";
+  MoreHorizontal,
+} from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
+import { mockShips } from '@/lib/mock/data';
 
 export function ShipRegistry() {
   const [selectedShip, setSelectedShip] = useState<string | null>(null);
@@ -77,8 +77,11 @@ export function ShipRegistry() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className={`hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer ${selectedShip === ship.id.toString() ? 'bg-blue-50 dark:bg-blue-900/30' : ''
-                  }`}
+                className={`hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer ${
+                  selectedShip === ship.id.toString()
+                    ? 'bg-blue-50 dark:bg-blue-900/30'
+                    : ''
+                }`}
                 onClick={() => handleRowClick(ship.id.toString())}
               >
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -91,20 +94,25 @@ export function ShipRegistry() {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900 dark:text-white">{ship.name}</div>
+                  <div className="text-sm text-gray-900 dark:text-white">
+                    {ship.name}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-500 dark:text-gray-300">{ship.shipType}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-300">
+                    {ship.shipType}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                   {ship.registryCountry}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
-                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${ship.isActive
-                      ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                      : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
-                      }`}
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                      ship.isActive
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
+                        : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
+                    }`}
                   >
                     {ship.isActive ? (
                       <CheckCircle className="w-4 h-4 mr-1" />
