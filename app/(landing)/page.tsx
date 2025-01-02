@@ -6,11 +6,10 @@ import { HeroSection } from "@/components/homepage/hero-section";
 import { ParallaxSection } from "@/components/homepage/parallax-section";
 import { Partners } from "@/components/homepage/partners";
 import { Statistics } from "@/components/homepage/statistics";
-import PageWrapper from "@/components/wrapper/page-wrapper";
 
 export default function Home() {
   return (
-    <PageWrapper>
+    <>
       <HeroSection />
       <CTACards />
       <Expertise />
@@ -19,6 +18,6 @@ export default function Home() {
       <ParallaxSection />
       <Statistics />
       <CallToAction />
-    </PageWrapper>
+    </>
   );
 }
