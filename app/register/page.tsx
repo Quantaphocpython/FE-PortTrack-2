@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Anchor, Search, Info } from "lucide-react";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Anchor, Search, Info } from 'lucide-react';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Switch } from "@/components/ui/switch";
-import { toast } from "@/hooks/use-toast";
-import Footer from "@/components/wrapper/footer";
-import Link from "next/link";
+} from '@/components/ui/tooltip';
+import { Switch } from '@/components/ui/switch';
+import { toast } from '@/hooks/use-toast';
+import Footer from '@/components/wrapper/footer';
+import Link from 'next/link';
 
 interface FormData {
   shipName: string;
@@ -45,36 +45,36 @@ interface FormData {
 }
 
 const shipTypes = [
-  "Container Ship",
-  "Bulk Carrier",
-  "Tanker",
-  "Cargo Ship",
-  "Passenger Ship",
-  "Fishing Vessel",
-  "Other",
+  'Container Ship',
+  'Bulk Carrier',
+  'Tanker',
+  'Cargo Ship',
+  'Passenger Ship',
+  'Fishing Vessel',
+  'Other',
 ];
 
 const engineTypes = [
-  "Diesel Engine",
-  "Steam Turbine",
-  "Gas Turbine",
-  "Nuclear Propulsion",
-  "Hybrid",
-  "Electric",
-  "Other",
+  'Diesel Engine',
+  'Steam Turbine',
+  'Gas Turbine',
+  'Nuclear Propulsion',
+  'Hybrid',
+  'Electric',
+  'Other',
 ];
 
 export default function ShipRegistration() {
   const [formData, setFormData] = useState<FormData>({
-    shipName: "",
-    ownerWalletAddress: "",
-    shipCode: "",
-    registrationCountry: "",
-    shipType: "",
-    length: "",
-    width: "",
-    capacity: "",
-    engineType: "",
+    shipName: '',
+    ownerWalletAddress: '',
+    shipCode: '',
+    registrationCountry: '',
+    shipType: '',
+    length: '',
+    width: '',
+    capacity: '',
+    engineType: '',
     isActive: true,
   });
 
@@ -98,30 +98,30 @@ export default function ShipRegistration() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       toast({
-        title: "Registration Successful!",
+        title: 'Registration Successful!',
         description:
-          "The ship information has been recorded on the blockchain.",
+          'The ship information has been recorded on the blockchain.',
       });
 
       // Reset form
       setFormData({
-        shipName: "",
-        ownerWalletAddress: "",
-        shipCode: "",
-        registrationCountry: "",
-        shipType: "",
-        length: "",
-        width: "",
-        capacity: "",
-        engineType: "",
+        shipName: '',
+        ownerWalletAddress: '',
+        shipCode: '',
+        registrationCountry: '',
+        shipType: '',
+        length: '',
+        width: '',
+        capacity: '',
+        engineType: '',
         isActive: true,
       });
     } catch (error) {
-      console.error("Error registering ship:", error);
+      console.error('Error registering ship:', error);
       toast({
-        title: "Registration Failed",
-        description: "An error occurred. Please try again.",
-        variant: "destructive",
+        title: 'Registration Failed',
+        description: 'An error occurred. Please try again.',
+        variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
@@ -130,8 +130,8 @@ export default function ShipRegistration() {
 
   const handleSearchShipCode = () => {
     toast({
-      title: "Search Ship Code",
-      description: "Feature under development...",
+      title: 'Search Ship Code',
+      description: 'Feature under development...',
     });
   };
 
@@ -254,7 +254,7 @@ export default function ShipRegistration() {
                       <Label htmlFor="shipType">Ship Type</Label>
                       <Select
                         onValueChange={(value) =>
-                          handleChange({ target: { name: "shipType", value } })
+                          handleChange({ target: { name: 'shipType', value } })
                         }
                       >
                         <SelectTrigger>
@@ -275,7 +275,7 @@ export default function ShipRegistration() {
                       <Select
                         onValueChange={(value) =>
                           handleChange({
-                            target: { name: "engineType", value },
+                            target: { name: 'engineType', value },
                           })
                         }
                       >
@@ -351,7 +351,7 @@ export default function ShipRegistration() {
                     Cancel
                   </Button>
                   <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Processing..." : "Register"}
+                    {isLoading ? 'Processing...' : 'Register'}
                   </Button>
                 </div>
               </form>

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Ship } from "@/app/types";
-import { useState } from "react";
-import { mockShips } from "@/app/mock/data";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Ship } from '@/types';
+import { useState } from 'react';
+import { mockShips } from '@/app/mock/data';
 import {
   ShipWheel,
   Waves,
@@ -17,16 +17,16 @@ import {
   Ruler,
   BarChart2,
   Clock,
-  Database
-} from "lucide-react";
-import { motion } from "framer-motion";
+  Database,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function ShipSearch() {
-  const [shipCode, setShipCode] = useState("");
+  const [shipCode, setShipCode] = useState('');
   const [ship, setShip] = useState<Ship | null>(mockShips[0]);
 
   const handleSearch = async () => {
-    const found = mockShips.find(s => s.shipCode === shipCode);
+    const found = mockShips.find((s) => s.shipCode === shipCode);
     setShip(found || null);
   };
 
@@ -93,10 +93,11 @@ export function ShipSearch() {
                 </div>
               </div>
               <div
-                className={`px-3 py-1 rounded-full text-xs font-medium ${ship.isActive
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                  : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
-                  }`}
+                className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  ship.isActive
+                    ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
+                    : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
+                }`}
               >
                 {ship.isActive ? 'Active' : 'Inactive'}
               </div>
@@ -142,7 +143,9 @@ export function ShipSearch() {
                   <BarChart2 className="w-5 h-5 text-gray-500" />
                   <div>
                     <p className="text-xs text-gray-500">Capacity</p>
-                    <p className="font-medium">{ship.capacity.toString()} TEU</p>
+                    <p className="font-medium">
+                      {ship.capacity.toString()} TEU
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">

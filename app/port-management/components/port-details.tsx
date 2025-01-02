@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   MapPin,
   Globe,
@@ -9,10 +9,10 @@ import {
   Compass,
   Landmark,
   Layers,
-  Clock
-} from "lucide-react";
-import { mockPorts } from "@/app/mock/data";
-import { Port } from "@/app/types";
+  Clock,
+} from 'lucide-react';
+import { mockPorts } from '@/app/mock/data';
+import { Port } from '@/types';
 
 export function PortDetails() {
   const [selectedPort, setSelectedPort] = useState<Port | null>(mockPorts[0]);
@@ -53,7 +53,9 @@ export function PortDetails() {
               <MapPin className="w-5 h-5 text-gray-500" />
               <div>
                 <p className="text-xs text-gray-500">Location</p>
-                <p className="font-medium">{selectedPort.location}, {selectedPort.country}</p>
+                <p className="font-medium">
+                  {selectedPort.location}, {selectedPort.country}
+                </p>
               </div>
             </div>
           </div>
@@ -115,11 +117,15 @@ export function PortDetails() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-xs text-gray-500">Latitude</p>
-              <p className="font-medium">{selectedPort.geoCoordinates.latitude}</p>
+              <p className="font-medium">
+                {selectedPort.geoCoordinates.latitude}
+              </p>
             </div>
             <div>
               <p className="text-xs text-gray-500">Longitude</p>
-              <p className="font-medium">{selectedPort.geoCoordinates.longitude}</p>
+              <p className="font-medium">
+                {selectedPort.geoCoordinates.longitude}
+              </p>
             </div>
           </div>
         </div>

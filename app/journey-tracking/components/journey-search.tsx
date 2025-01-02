@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Journey } from "@/app/types";
-import { useState } from "react";
-import { mockJourneys } from "@/app/mock/data";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Journey } from '@/types';
+import { useState } from 'react';
+import { mockJourneys } from '@/app/mock/data';
 import {
   Navigation,
   MapPin,
@@ -13,16 +13,16 @@ import {
   CheckCircle,
   AlertCircle,
   List,
-  Ship
-} from "lucide-react";
-import { motion } from "framer-motion";
+  Ship,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export function JourneySearch() {
-  const [journeyId, setJourneyId] = useState("");
+  const [journeyId, setJourneyId] = useState('');
   const [journey, setJourney] = useState<Journey | null>(mockJourneys[0]);
 
   const handleSearch = async () => {
-    const found = mockJourneys.find(j => j.id.toString() === journeyId);
+    const found = mockJourneys.find((j) => j.id.toString() === journeyId);
     setJourney(found || null);
   };
 
@@ -84,15 +84,20 @@ export function JourneySearch() {
                     Journey #{journey.id.toString()}
                   </h3>
                   <div
-                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mt-2 ${journey.completed
-                      ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                      : 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300'
-                      }`}
+                    className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium mt-2 ${
+                      journey.completed
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
+                        : 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300'
+                    }`}
                   >
                     {journey.completed ? (
-                      <><CheckCircle className="w-4 h-4 mr-1" /> Completed</>
+                      <>
+                        <CheckCircle className="w-4 h-4 mr-1" /> Completed
+                      </>
                     ) : (
-                      <><AlertCircle className="w-4 h-4 mr-1" /> In Progress</>
+                      <>
+                        <AlertCircle className="w-4 h-4 mr-1" /> In Progress
+                      </>
                     )}
                   </div>
                 </div>
@@ -113,7 +118,9 @@ export function JourneySearch() {
                   <MapPin className="w-5 h-5 text-gray-500" />
                   <div>
                     <p className="text-xs text-gray-500">Start Port ID</p>
-                    <p className="font-medium">{journey.startPortId.toString()}</p>
+                    <p className="font-medium">
+                      {journey.startPortId.toString()}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -124,7 +131,7 @@ export function JourneySearch() {
                   <div>
                     <p className="text-xs text-gray-500">Port IDs</p>
                     <p className="font-medium">
-                      {journey.portIds.map(id => id.toString()).join(', ')}
+                      {journey.portIds.map((id) => id.toString()).join(', ')}
                     </p>
                   </div>
                 </div>
@@ -141,7 +148,10 @@ export function JourneySearch() {
               </div>
               <div className="space-y-2">
                 {journey.arrivalTimes.map((time, index) => (
-                  <div key={index} className="flex items-center space-x-2 text-sm">
+                  <div
+                    key={index}
+                    className="flex items-center space-x-2 text-sm"
+                  >
                     <span className="text-gray-500">Port {index + 1}:</span>
                     <span className="font-medium">
                       {new Date(Number(time)).toLocaleString()}
