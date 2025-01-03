@@ -363,14 +363,16 @@ export function Partners() {
           {renderPartnerCell(staticPartners[2])}
           {renderRotatingCell("pos2")}
           {renderPartnerCell(staticPartners[3])}
-          {renderPartnerCell(staticPartners[4])}
+          {renderRotatingCell("pos3")}
 
           {/* Second Row */}
-          {renderRotatingCell("pos3")}
+          {renderPartnerCell(staticPartners[1])}
           {renderRotatingCell("pos4")}
           {renderRotatingCell("pos5")}
+          {renderPartnerCell(staticPartners[3])}
           {renderRotatingCell("pos6")}
           {renderRotatingCell("pos7")}
+          {renderPartnerCell(staticPartners[4])}
           {/* Add more static and rotating cells as needed */}
         </div>
       </div>
