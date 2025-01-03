@@ -89,7 +89,7 @@ export function CallToAction() {
               size="lg"
               className="bg-white text-blue-900 hover:bg-blue-100 transition-all duration-300 text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              <Link href="/register">
+              <Link href="/register-ship">
                 Get Started Now
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
