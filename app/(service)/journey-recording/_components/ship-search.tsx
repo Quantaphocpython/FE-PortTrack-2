@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Ship } from '@/types';
-import { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Ship } from "@/types";
+import { useState } from "react";
+import { mockShips } from "@/lib/mock/data";
 import {
   ShipWheel,
   Waves,
@@ -17,12 +18,11 @@ import {
   BarChart2,
   Clock,
   Database,
-} from 'lucide-react';
-import { motion } from 'framer-motion';
-import { mockShips } from '@/lib/mock/data';
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 export function ShipSearch() {
-  const [shipCode, setShipCode] = useState('');
+  const [shipCode, setShipCode] = useState("");
   const [ship, setShip] = useState<Ship | null>(mockShips[0]);
 
   const handleSearch = async () => {
@@ -95,11 +95,11 @@ export function ShipSearch() {
               <div
                 className={`px-3 py-1 rounded-full text-xs font-medium ${
                   ship.isActive
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                    : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
+                    ? "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300"
+                    : "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300"
                 }`}
               >
-                {ship.isActive ? 'Active' : 'Inactive'}
+                {ship.isActive ? "Active" : "Inactive"}
               </div>
             </div>
 

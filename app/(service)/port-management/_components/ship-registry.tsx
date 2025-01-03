@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Ship,
   Code,
@@ -9,15 +9,15 @@ import {
   CheckCircle,
   XCircle,
   MoreHorizontal,
-} from 'lucide-react';
+} from "lucide-react";
+import { mockShips } from "@/lib/mock/data";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { Button } from '@/components/ui/button';
-import { mockShips } from '@/lib/mock/data';
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export function ShipRegistry() {
   const [selectedShip, setSelectedShip] = useState<string | null>(null);
@@ -79,8 +79,8 @@ export function ShipRegistry() {
                 transition={{ duration: 0.3 }}
                 className={`hover:bg-gray-50 dark:hover:bg-gray-800/50 cursor-pointer ${
                   selectedShip === ship.id.toString()
-                    ? 'bg-blue-50 dark:bg-blue-900/30'
-                    : ''
+                    ? "bg-blue-50 dark:bg-blue-900/30"
+                    : ""
                 }`}
                 onClick={() => handleRowClick(ship.id.toString())}
               >
@@ -110,8 +110,8 @@ export function ShipRegistry() {
                   <span
                     className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
                       ship.isActive
-                        ? 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300'
-                        : 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300'
+                        ? "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300"
+                        : "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300"
                     }`}
                   >
                     {ship.isActive ? (
@@ -119,7 +119,7 @@ export function ShipRegistry() {
                     ) : (
                       <XCircle className="w-4 h-4 mr-1" />
                     )}
-                    {ship.isActive ? 'Active' : 'Inactive'}
+                    {ship.isActive ? "Active" : "Inactive"}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -146,7 +146,7 @@ export function ShipRegistry() {
       {selectedShip && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
+          animate={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.3 }}
           className="p-6 bg-gray-50 dark:bg-gray-800/50 border-t"
         >

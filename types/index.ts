@@ -38,3 +38,16 @@ export interface Port {
   };
   registeredAt: bigint;
 }
+
+export interface FormShipReigstionData {
+  shipName: string;
+  ownerWalletAddress: string;
+  shipCode: string;
+  registrationCountry: string;
+  shipType: string;
+  length: string;
+  width: string;
+  capacity: string;
+  engineType: string;
+  isActive: boolean;
+}
