@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"; // Import usePathname
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Globe, Menu, Anchor, Ship, Box, Navigation } from "lucide-react";
@@ -43,23 +44,29 @@ const oceanServices = [
 ];
 
 export default function Header() {
+  const pathname = usePathname(); // Get current path
   const [isScrolled, setIsScrolled] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
-      setIsScrolled(window.scrollY > 80);
-    });
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
 
-  const handleDropdownSelect = () => {
-    setDropdownOpen(false);
-  };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  // Determine if the header should use "scrolled" styles
+  const shouldShowScrolledStyle = pathname !== "/" || isScrolled;
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+        shouldShowScrolledStyle
+          ? "bg-white/90 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto">
@@ -73,7 +80,7 @@ export default function Header() {
             >
               <span
                 className={`text-2xl font-bold ${
-                  isScrolled ? "text-blue-600" : "text-white"
+                  shouldShowScrolledStyle ? "text-blue-600" : "text-white"
                 }`}
               >
                 Transocean
@@ -86,16 +93,16 @@ export default function Header() {
             <Link
               href="/about-us"
               className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                isScrolled ? "text-gray-600" : "text-white"
+                shouldShowScrolledStyle ? "text-gray-600" : "text-white"
               }`}
             >
               About Us
             </Link>
 
-            <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
+            <DropdownMenu>
               <DropdownMenuTrigger
                 className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  isScrolled ? "text-gray-600" : "text-white"
+                  shouldShowScrolledStyle ? "text-gray-600" : "text-white"
                 }`}
               >
                 Services
@@ -107,13 +114,15 @@ export default function Header() {
                       OCEAN
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator className="my-2" />
-                    <div className="grid gap-4">
+                    <div
+                      className="
+grid gap-4"
+                    >
                       {oceanServices.map((service) => (
                         <Link
                           key={service.title}
                           href={service.href}
                           className="block"
-                          onClick={handleDropdownSelect}
                         >
                           <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-slate-50 transition-all duration-200 group">
                             <div className="mt-1">
@@ -144,7 +153,7 @@ export default function Header() {
                   .replace(/ & /g, "-")
                   .replace(/ /g, "-")}`}
                 className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  isScrolled ? "text-gray-600" : "text-white"
+                  shouldShowScrolledStyle ? "text-gray-600" : "text-white"
                 }`}
               >
                 {item}
@@ -154,12 +163,14 @@ export default function Header() {
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-6">
-            <DropdownMenu modal={false}>
+            <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={isScrolled ? "text-gray-600" : "text-white"}
+                  className={
+                    shouldShowScrolledStyle ? "text-gray-600" : "text-white"
+                  }
                 >
                   <Globe className="h-5 w-5" />
                 </Button>
@@ -172,7 +183,7 @@ export default function Header() {
 
             <Button
               className={`${
-                isScrolled
+                shouldShowScrolledStyle
                   ? "bg-blue-600 text-white hover:bg-blue-700"
                   : "bg-white/10 text-white hover:bg-white/20"
               } backdrop-blur-sm transition-all duration-300`}
@@ -186,7 +197,7 @@ export default function Header() {
             variant="ghost"
             size="icon"
             className={`md:hidden ${
-              isScrolled ? "text-gray-600" : "text-white"
+              shouldShowScrolledStyle ? "text-gray-600" : "text-white"
             }`}
           >
             <Menu className="h-6 w-6" />
