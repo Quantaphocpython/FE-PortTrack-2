@@ -159,7 +159,7 @@ export default function Header() {
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-6">
-            <DropdownMenu modal={false}>
+            {/* <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
@@ -173,9 +173,9 @@ export default function Header() {
                 <DropdownMenuItem>English</DropdownMenuItem>
                 <DropdownMenuItem>Tiếng Việt</DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
 
-            <Button
+            {/* <Button
               className={`${
                 isScrolled
                   ? 'bg-blue-600 text-white hover:bg-blue-700'
@@ -183,9 +183,9 @@ export default function Header() {
               } backdrop-blur-sm transition-all duration-300`}
             >
               Schedule Transport
-            </Button>
+            </Button> */}
 
-            <CustomConnectButton />
+            <CustomConnectButton isScrolled={isScrolled} />
           </div>
 
           {/* Mobile Menu Button */}

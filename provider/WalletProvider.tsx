@@ -16,7 +16,7 @@ const queryClient = new QueryClient();
 
 type Props = React.ReactNode;
 
-export default function ContextProvider({ children }: { children: Props }) {
+export default function WalletProvider({ children }: { children: Props }) {
   const [mounted, setMounted] = React.useState(false);
   const { theme } = useTheme();
   const [rainbowKitTheme, setRainbowKitTheme] = useState(

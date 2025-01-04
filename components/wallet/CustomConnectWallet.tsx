@@ -1,32 +1,54 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useToast } from '@/hooks/use-toast';
 import {
-  ChevronDown,
-  NetworkIcon,
-  OctagonAlert,
-  PlugIcon,
-  Wallet2Icon,
-} from 'lucide-react';
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@radix-ui/react-tooltip';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Anchor, ChevronDown, MapPin, OctagonAlert, Ship } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect } from 'react';
-import CopyClipboard from '../common/CopyClipboard';
 
-export function CustomConnectButton() {
+type Props = {
+  isScrolled: boolean;
+};
+
+export function CustomConnectButton({ isScrolled }: Props) {
   const { theme, systemTheme, resolvedTheme } = useTheme();
+  const { toast } = useToast();
 
   useEffect(() => {
-    // Đảm bảo RainbowKit tuân theo theme của ứng dụng
     document.documentElement.classList.toggle('light', theme === 'light');
-
-    console.log(theme);
   }, [theme, systemTheme, resolvedTheme]);
 
-  // Hàm để chọn variant dựa trên theme
   function formatAddress(address: string) {
-    return `${address.slice(0, 3)}...${address.slice(-3)}`;
+    return `${address.slice(0, 4)}...${address.slice(-4)}`;
   }
+
+  const handleCopy = (e: any, account: any) => {
+    e.stopPropagation();
+    navigator.clipboard
+      .writeText(account.address)
+      .then(() => {
+        toast({
+          title: 'Address Copied',
+          description: 'Wallet address has been copied to clipboard',
+          duration: 2000,
+          variant: 'default',
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: 'Copy Failed',
+          description: 'Unable to copy address',
+          variant: 'destructive',
+          duration: 2000,
+        });
+      });
+  };
 
   return (
     <ConnectButton.Custom>
@@ -60,16 +82,18 @@ export function CustomConnectButton() {
             {(() => {
               if (!connected) {
                 return (
-                  <div className="flex items-center gap-2">
-                    <Button
-                      onClick={openConnectModal}
-                      variant="default"
-                      className="flex items-center justify-center"
-                    >
-                      <PlugIcon className="mr-2 h-4 w-4" />
-                      <span className="truncate">Connect Wallet</span>
-                    </Button>
-                  </div>
+                  <Button
+                    onClick={openConnectModal}
+                    variant="default"
+                    className={`flex items-center justify-center group ${
+                      isScrolled
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-white/10 text-white hover:bg-white/20'
+                    } backdrop-blur-sm transition-all duration-300`}
+                  >
+                    <Anchor className="mr-2 h-4 w-4 text-white group-hover:rotate-12 transition-transform" />
+                    <span className="truncate">Connect Wallet</span>
+                  </Button>
                 );
               }
 
@@ -81,40 +105,78 @@ export function CustomConnectButton() {
                     className="flex items-center gap-2 px-4 py-2"
                   >
                     <OctagonAlert className="h-4 w-4" />
-                    <span className="truncate">Wrong Network</span>
+                    <span>Unsupported Maritime Network</span>
                   </Button>
                 );
               }
 
               return (
-                <div className="flex items-center">
-                  <Button
-                    onClick={openChainModal}
-                    variant="outline"
-                    className="rounded-r-none border-r-0 flex items-center gap-2"
-                  >
-                    <NetworkIcon className="h-4 w-4 text-muted-foreground" />
-                    <span className="font-medium">{chain.name}</span>
-                  </Button>
+                <div className="flex items-center space-x-1">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        onClick={openChainModal}
+                        variant="secondary"
+                        className={`flex items-center justify-center w-10 ${
+                          isScrolled
+                            ? 'border-blue-500/50 hover:border-blue-500/70'
+                            : 'border-white/30 hover:border-white/50'
+                        } transition-all duration-300`}
+                      >
+                        <MapPin className="h-4 w-4 text-blue-500" />
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent
+                      side="bottom"
+                      sideOffset={10}
+                      className="border-none"
+                    >
+                      <Button variant="outline">
+                        <MapPin className="h-4 w-4" />
+                        <span>{chain.name}</span>
+                      </Button>
+                    </TooltipContent>
+                  </Tooltip>
+
                   <Button
                     onClick={openAccountModal}
                     variant="default"
-                    className="rounded-l-none flex items-center gap-2 max-w-[250px]"
+                    className={`group flex items-center gap-2 relative overflow-hidden ${
+                      isScrolled
+                        ? 'bg-blue-600 hover:bg-blue-700'
+                        : 'bg-white/10 hover:bg-white/20'
+                    } backdrop-blur-sm transition-all duration-300`}
                   >
-                    <Wallet2Icon className="h-4 w-4 mr-2 text-muted-foreground" />
+                    <div className="relative">
+                      <Ship
+                        className={`h-4 w-4 text-white/80 group-hover:animate-[wave_1.5s_ease-in-out_infinite] transition-transform`}
+                      />
+                      <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity">
+                        <div className="absolute w-2 h-0.5 bg-white/50 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:animate-[wake_1.5s_linear_infinite]"></div>
+                      </div>
+                    </div>
                     <div className="flex flex-col items-start">
-                      <span className="text-sm font-medium truncate max-w-[150px]">
+                      <span
+                        className={`text-sm font-medium ${
+                          isScrolled ? 'text-white' : 'text-white/90'
+                        }`}
+                      >
                         {account.displayBalance}
                       </span>
-                      <span className="text-xs text-muted-foreground flex">
-                        {formatAddress(account.address)}
-                        <CopyClipboard
-                          text={account.address}
-                          className="w-3 h-3 my-auto ml-1"
-                        />
+                      <span
+                        className={`text-xs flex items-center ${
+                          isScrolled ? 'text-white/70' : 'text-white/60'
+                        }`}
+                      >
+                        <span
+                          className="cursor-copy"
+                          onClick={(e) => handleCopy(e, account)}
+                        >
+                          {formatAddress(account.address)}
+                        </span>
                       </span>
                     </div>
-                    <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
+                    <ChevronDown className="ml-auto h-4 w-4 text-white/50" />
                   </Button>
                 </div>
               );
