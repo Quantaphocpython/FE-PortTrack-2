@@ -139,6 +139,28 @@ const config = {
             opacity: '0.5',
           },
         },
+        anchor: {
+          '0%, 100%': {
+            transform: 'rotate(-5deg) translateY(0)',
+          },
+          '50%': {
+            transform: 'rotate(5deg) translateY(-2px)',
+          },
+        },
+        chain: {
+          '0%': {
+            transform: 'scaleX(0)',
+            transformOrigin: 'left',
+          },
+          '50%': {
+            transform: 'scaleX(1)',
+            transformOrigin: 'left',
+          },
+          '100%': {
+            transform: 'scaleX(0)',
+            transformOrigin: 'right',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -148,6 +170,8 @@ const config = {
         'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear',
         wave: 'wave 1.5s ease-in-out infinite',
         wake: 'wake 1.5s linear infinite',
+        anchor: 'anchor 1.5s ease-in-out infinite',
+        chain: 'chain 1.5s linear infinite',
       },
     },
   },

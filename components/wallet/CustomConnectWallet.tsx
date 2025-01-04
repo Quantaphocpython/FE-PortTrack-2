@@ -85,13 +85,17 @@ export function CustomConnectButton({ isScrolled }: Props) {
                   <Button
                     onClick={openConnectModal}
                     variant="default"
-                    className={`flex items-center justify-center group ${
+                    className={`flex items-center justify-center group relative overflow-hidden ${
                       isScrolled
                         ? 'bg-blue-600 text-white hover:bg-blue-700'
                         : 'bg-white/10 text-white hover:bg-white/20'
                     } backdrop-blur-sm transition-all duration-300`}
                   >
-                    <Anchor className="mr-2 h-4 w-4 text-white group-hover:rotate-12 transition-transform" />
+                    <Anchor
+                      className={`mr-2 h-4 w-4 text-white 
+                      group-hover:animate-[anchor_1.5s_ease-in-out_infinite]
+                      transition-transform relative z-10`}
+                    />
                     <span className="truncate">Connect Wallet</span>
                   </Button>
                 );
