@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { JourneyRecordingForm } from "./_components/journey-recording-form";
-import { ShipSearch } from "./_components/ship-search";
-import { Anchor, Ship, Navigation } from "lucide-react";
-import { PageHeader } from "@/components/page-header";
-import { AnimatedBackground } from "@/components/ui/animated-background";
-import { PremiumStatsCard } from "@/components/ui/premium-stats-card";
-import PageWrapper from "@/components/wrapper/page-wrapper";
+import { JourneyRecordingForm } from './_components/journey-recording-form';
+import { ShipSearch } from './_components/ship-search';
+import { Anchor, Ship, Navigation } from 'lucide-react';
+import { PageHeader } from '@/components/page-header';
+import { AnimatedBackground } from '@/components/ui/animated-background';
+import { PremiumStatsCard } from '@/components/ui/premium-stats-card';
+import PageWrapper from '@/components/wrapper/page-wrapper';
 
 export default function JourneyRecordingPage() {
   return (
@@ -24,19 +24,19 @@ export default function JourneyRecordingPage() {
               title="Active Ships"
               value="24"
               icon={<Ship className="w-6 h-6 text-primary" />}
-              trend={{ value: 12, label: "vs last month" }}
+              trend={{ value: 12, label: 'vs last month' }}
             />
             <PremiumStatsCard
               title="Active Journeys"
               value="8"
               icon={<Navigation className="w-6 h-6 text-primary" />}
-              trend={{ value: -5, label: "vs last month" }}
+              trend={{ value: -5, label: 'vs last month' }}
             />
             <PremiumStatsCard
               title="Port Visits"
               value="156"
               icon={<Anchor className="w-6 h-6 text-primary" />}
-              trend={{ value: 23, label: "vs last month" }}
+              trend={{ value: 23, label: 'vs last month' }}
             />
           </div>
 

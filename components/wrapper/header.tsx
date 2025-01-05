@@ -141,7 +141,7 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {['Projects', 'Press & News', 'Contacts'].map((item) => (
+            {['Ship', 'Press & News', 'Contacts'].map((item) => (
               <Link
                 key={item}
                 href={`/${item

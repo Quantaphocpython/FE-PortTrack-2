@@ -296,6 +296,81 @@ export const contractABI = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'getShips',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'id',
+            type: 'uint256',
+          },
+          {
+            internalType: 'string',
+            name: 'name',
+            type: 'string',
+          },
+          {
+            internalType: 'string',
+            name: 'owner',
+            type: 'string',
+          },
+          {
+            internalType: 'string',
+            name: 'shipCode',
+            type: 'string',
+          },
+          {
+            internalType: 'string',
+            name: 'registryCountry',
+            type: 'string',
+          },
+          {
+            internalType: 'string',
+            name: 'shipType',
+            type: 'string',
+          },
+          {
+            internalType: 'uint256',
+            name: 'length',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'width',
+            type: 'uint256',
+          },
+          {
+            internalType: 'uint256',
+            name: 'capacity',
+            type: 'uint256',
+          },
+          {
+            internalType: 'string',
+            name: 'engineType',
+            type: 'string',
+          },
+          {
+            internalType: 'uint256',
+            name: 'registeredAt',
+            type: 'uint256',
+          },
+          {
+            internalType: 'bool',
+            name: 'isActive',
+            type: 'bool',
+          },
+        ],
+        internalType: 'struct ShipJourneyTracker.Ship[]',
+        name: '',
+        type: 'tuple[]',
+      },
+    ],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [
       {
         internalType: 'uint256',
