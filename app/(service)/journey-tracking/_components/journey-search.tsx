@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Journey } from '@/types';
 import { useState } from 'react';
-import { mockJourneys } from '@/app/mock/data';
+import { mockJourneys } from '@/lib/mock/data';
 import {
   Navigation,
   MapPin,

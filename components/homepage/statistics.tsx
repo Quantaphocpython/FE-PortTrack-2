@@ -1,37 +1,37 @@
-"use client";
+'use client';
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { Ship, Globe2, Clock, HeadphonesIcon } from "lucide-react";
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Clock, Globe2, HeadphonesIcon, Ship } from 'lucide-react';
+import { useRef } from 'react';
 
 const stats = [
   {
     icon: Ship,
     value: 12,
-    unit: "Million",
-    label: "Containers Shipped Annually",
-    color: "bg-blue-500",
+    unit: 'Million',
+    label: 'Containers Shipped Annually',
+    color: 'bg-blue-500',
   },
   {
     icon: Globe2,
     value: 150,
-    unit: "+",
-    label: "Countries Served",
-    color: "bg-green-500",
+    unit: '+',
+    label: 'Countries Served',
+    color: 'bg-green-500',
   },
   {
     icon: Clock,
     value: 99.9,
-    unit: "%",
-    label: "On-Time Delivery Rate",
-    color: "bg-orange-500",
+    unit: '%',
+    label: 'On-Time Delivery Rate',
+    color: 'bg-orange-500',
   },
   {
     icon: HeadphonesIcon,
     value: 24,
-    unit: "/7",
-    label: "Customer Support",
-    color: "bg-purple-500",
+    unit: '/7',
+    label: 'Customer Support',
+    color: 'bg-purple-500',
   },
 ];
 
@@ -39,7 +39,7 @@ export function Statistics() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ['start end', 'end start'],
   });
 
   return (

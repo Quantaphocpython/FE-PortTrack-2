@@ -32,7 +32,7 @@ const CopyClipboard: React.FC<CopyClipboardProps> = ({
     } catch (err) {
       toast({
         title: 'Copy Failed',
-        description: 'Unable to copy wallet address',
+        description: 'Unable to copy wallet address' + err,
         duration: toastDuration,
         variant: 'destructive',
       });

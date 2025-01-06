@@ -4,16 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Port } from '@/types';
 import { useState } from 'react';
 
 export function PortSearch() {
   const [portCode, setPortCode] = useState('');
-  const [port, setPort] = useState<Port | null>(null);
-
-  const handleSearch = async () => {
-    // TODO: Implement blockchain integration
-  };
 
   return (
     <Card>
@@ -31,7 +25,7 @@ export function PortSearch() {
                 onChange={(e) => setPortCode(e.target.value)}
                 placeholder="Enter port code"
               />
-              <Button onClick={handleSearch}>Search</Button>
+              <Button>Search</Button>
             </div>
           </div>
         </div>

@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { mockPorts } from '@/lib/mock/data';
+import { Port } from '@/types';
+import { motion } from 'framer-motion';
 import {
-  MapPin,
-  Globe,
-  User,
+  Clock,
   Compass,
+  Globe,
   Landmark,
   Layers,
-  Clock,
-} from "lucide-react";
-import { mockPorts } from "@/lib/mock/data";
-import { Port } from "@/types";
+  MapPin,
+  User,
+} from 'lucide-react';
+import { useState } from 'react';
 
 export function PortDetails() {
   const [selectedPort, setSelectedPort] = useState<Port | null>(mockPorts[0]);

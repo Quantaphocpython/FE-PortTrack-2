@@ -14,6 +14,7 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { CustomConnectButton } from '../wallet/CustomConnectWallet';
+import Logo from '../common/logo';
 
 const oceanServices = [
   {
@@ -72,13 +73,16 @@ export default function Header() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <span
-                className={`text-2xl font-bold ${
-                  isScrolled ? 'text-blue-600' : 'text-white'
-                }`}
-              >
-                Transocean
-              </span>
+              <div className="flex items-center">
+                <Logo isScroll={isScrolled} />
+                <span
+                  className={`text-2xl font-bold ${
+                    isScrolled ? 'text-blue-600' : 'text-white'
+                  }`}
+                >
+                  Transocean
+                </span>
+              </div>
             </motion.div>
           </Link>
 

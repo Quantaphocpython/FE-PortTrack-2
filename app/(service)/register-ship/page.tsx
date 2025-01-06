@@ -1,11 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatedBackground } from '@/components/ui/animated-background';
 import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Anchor, Search, Info, Loader2 } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -14,23 +19,18 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import PageWrapper from '@/components/wrapper/page-wrapper';
-import { AnimatedBackground } from '@/components/ui/animated-background';
-import { FormShipReigstionData } from '@/types';
-import { useRegisterShip } from '@/hooks/useRegisterShip';
 import { useToast } from '@/hooks/use-toast';
+import { useRegisterShip } from '@/hooks/useRegisterShip';
+import { FormShipReigstionData } from '@/types';
+import { motion } from 'framer-motion';
+import { Anchor, Info, Loader2, Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const shipTypes = [
   'Container Ship',
