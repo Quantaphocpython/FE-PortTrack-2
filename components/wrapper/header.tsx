@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"; // Import usePathname
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Globe, Menu, Anchor, Ship, Box, Navigation } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Globe, Menu, Anchor, Ship, Box, Navigation } from 'lucide-react';
+import { motion } from 'framer-motion';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,60 +12,55 @@ import {
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
+import { CustomConnectButton } from '../wallet/CustomConnectWallet';
 
 const oceanServices = [
   {
-    title: "Journey Recording",
+    title: 'Journey Recording',
     description:
-      "Record and monitor vessel journeys with blockchain technology",
+      'Record and monitor vessel journeys with blockchain technology',
     icon: Navigation,
-    href: "/journey-recording",
+    href: '/journey-recording',
   },
   {
-    title: "Journey Tracking",
-    description: "Real-time vessel tracking and route optimization",
+    title: 'Journey Tracking',
+    description: 'Real-time vessel tracking and route optimization',
     icon: Ship,
-    href: "/journey-tracking",
+    href: '/journey-tracking',
   },
   {
-    title: "Port Management",
-    description: "View details of international container terminals",
+    title: 'Port Management',
+    description: 'View details of international container terminals',
     icon: Anchor,
-    href: "/port-management",
+    href: '/port-management',
   },
   {
-    title: "Register New Ship",
-    description: "Add and manage your vessels in our network",
+    title: 'Register New Ship',
+    description: 'Add and manage your vessels in our network',
     icon: Box,
-    href: "/register-ship",
+    href: '/register-ship',
   },
 ];
 
 export default function Header() {
-  const pathname = usePathname(); // Get current path
   const [isScrolled, setIsScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', () => {
+      setIsScrolled(window.scrollY > 80);
+    });
+  }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  // Determine if the header should use "scrolled" styles
-  const shouldShowScrolledStyle = pathname !== "/" || isScrolled;
+  const handleDropdownSelect = () => {
+    setDropdownOpen(false);
+  };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        shouldShowScrolledStyle
-          ? "bg-white/90 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto">
@@ -80,7 +74,7 @@ export default function Header() {
             >
               <span
                 className={`text-2xl font-bold ${
-                  shouldShowScrolledStyle ? "text-blue-600" : "text-white"
+                  isScrolled ? 'text-blue-600' : 'text-white'
                 }`}
               >
                 Transocean
@@ -93,16 +87,20 @@ export default function Header() {
             <Link
               href="/about-us"
               className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                shouldShowScrolledStyle ? "text-gray-600" : "text-white"
+                isScrolled ? 'text-gray-600' : 'text-white'
               }`}
             >
               About Us
             </Link>
 
-            <DropdownMenu>
+            <DropdownMenu
+              open={dropdownOpen}
+              onOpenChange={setDropdownOpen}
+              modal={false}
+            >
               <DropdownMenuTrigger
                 className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  shouldShowScrolledStyle ? "text-gray-600" : "text-white"
+                  isScrolled ? 'text-gray-600' : 'text-white'
                 }`}
               >
                 Services
@@ -114,15 +112,13 @@ export default function Header() {
                       OCEAN
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator className="my-2" />
-                    <div
-                      className="
-grid gap-4"
-                    >
+                    <div className="grid gap-4">
                       {oceanServices.map((service) => (
                         <Link
                           key={service.title}
                           href={service.href}
                           className="block"
+                          onClick={handleDropdownSelect}
                         >
                           <div className="flex items-start space-x-4 p-3 rounded-lg hover:bg-slate-50 transition-all duration-200 group">
                             <div className="mt-1">
@@ -145,15 +141,15 @@ grid gap-4"
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {["Projects", "Press & News", "Contacts"].map((item) => (
+            {['Ship', 'Press & News', 'Contacts'].map((item) => (
               <Link
                 key={item}
                 href={`/${item
                   .toLowerCase()
-                  .replace(/ & /g, "-")
-                  .replace(/ /g, "-")}`}
+                  .replace(/ & /g, '-')
+                  .replace(/ /g, '-')}`}
                 className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  shouldShowScrolledStyle ? "text-gray-600" : "text-white"
+                  isScrolled ? 'text-gray-600' : 'text-white'
                 }`}
               >
                 {item}
@@ -163,14 +159,12 @@ grid gap-4"
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-6">
-            <DropdownMenu>
+            {/* <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={
-                    shouldShowScrolledStyle ? "text-gray-600" : "text-white"
-                  }
+                  className={isScrolled ? 'text-gray-600' : 'text-white'}
                 >
                   <Globe className="h-5 w-5" />
                 </Button>
@@ -179,17 +173,19 @@ grid gap-4"
                 <DropdownMenuItem>English</DropdownMenuItem>
                 <DropdownMenuItem>Tiếng Việt</DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
 
-            <Button
+            {/* <Button
               className={`${
-                shouldShowScrolledStyle
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-white/10 text-white hover:bg-white/20"
+                isScrolled
+                  ? 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-white/10 text-white hover:bg-white/20'
               } backdrop-blur-sm transition-all duration-300`}
             >
               Schedule Transport
-            </Button>
+            </Button> */}
+
+            <CustomConnectButton isScrolled={isScrolled} />
           </div>
 
           {/* Mobile Menu Button */}
@@ -197,7 +193,7 @@ grid gap-4"
             variant="ghost"
             size="icon"
             className={`md:hidden ${
-              shouldShowScrolledStyle ? "text-gray-600" : "text-white"
+              isScrolled ? 'text-gray-600' : 'text-white'
             }`}
           >
             <Menu className="h-6 w-6" />
