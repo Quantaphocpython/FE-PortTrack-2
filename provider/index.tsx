@@ -1,4 +1,6 @@
-import { ThemeProvider } from "./theme-provider";
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { ThemeProvider } from './theme-provider';
+import WalletProvider from './WalletProvider';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -8,7 +10,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <TooltipProvider>
+        <WalletProvider>{children}</WalletProvider>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
