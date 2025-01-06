@@ -125,6 +125,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Transocean Team' }],
   creator: 'Transocean',
   publisher: 'Transocean Inc.',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({
