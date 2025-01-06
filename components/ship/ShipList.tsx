@@ -53,7 +53,7 @@ const ShipList: React.FC = () => {
             Unable to Load Ships
           </h2>
           <p className="text-red-600">{error.message}</p>
-          <Button onClick={refetch} className="mt-4">
+          <Button className="mt-4">
             <RefreshCw className="mr-2 h-4 w-4" /> Try Again
           </Button>
         </div>
@@ -111,7 +111,7 @@ const ShipList: React.FC = () => {
         </div>
 
         {/* Refresh Button */}
-        <Button onClick={refetch} variant="outline">
+        <Button variant="outline">
           <RefreshCw className="mr-2 h-4 w-4" /> Refresh
         </Button>
       </div>
