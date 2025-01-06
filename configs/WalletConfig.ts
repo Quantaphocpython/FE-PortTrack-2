@@ -2,7 +2,6 @@ import { getDefaultConfig, getDefaultWallets } from '@rainbow-me/rainbowkit';
 import { ledgerWallet, trustWallet } from '@rainbow-me/rainbowkit/wallets';
 import { http } from 'wagmi';
 import { defineChain } from 'viem';
-import { kairos } from 'viem/chains';
 
 const AssetHubWestend = defineChain({
   id: 420420421,
@@ -48,14 +47,13 @@ const walletConfig = getDefaultConfig({
       wallets: [trustWallet, ledgerWallet],
     },
   ],
-  chains: [AssetHubWestend, Kitchensink, kairos],
+  chains: [AssetHubWestend, Kitchensink],
   transports: {
     [AssetHubWestend.id]: http(),
     [Kitchensink.id]: http(),
-    [kairos.id]: http('https://rpc.ankr.com/klaytn_testnet'),
   },
   ssr: true,
 });
 
 export default walletConfig;
-export { AssetHubWestend, Kitchensink, kairos };
+export { AssetHubWestend, Kitchensink };

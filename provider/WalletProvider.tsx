@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 import { WagmiProvider } from 'wagmi';
-import { kairos as network } from '@/configs/WalletConfig';
+import { AssetHubWestend as network } from '@/configs/WalletConfig';
 
 const queryClient = new QueryClient();
 
