@@ -1,68 +1,68 @@
-'use client';
+"use client";
 
-import { AnimatedBackground } from '@/components/ui/animated-background';
-import { Button } from '@/components/ui/button';
+import { AnimatedBackground } from "@/components/ui/animated-background";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from "@/components/ui/select";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip';
-import PageWrapper from '@/components/wrapper/page-wrapper';
-import { useToast } from '@/hooks/use-toast';
-import { useRegisterShip } from '@/hooks/useRegisterShip';
-import { FormShipReigstionData } from '@/types';
-import { motion } from 'framer-motion';
-import { Anchor, Info, Loader2, Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
+} from "@/components/ui/tooltip";
+import PageWrapper from "@/components/wrapper/page-wrapper";
+import { useToast } from "@/hooks/use-toast";
+import { useRegisterShip } from "@/hooks/useRegisterShip";
+import { FormShipReigstionData } from "@/types";
+import { motion } from "framer-motion";
+import { Anchor, Info, Loader2, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const shipTypes = [
-  'Container Ship',
-  'Bulk Carrier',
-  'Tanker',
-  'Cargo Ship',
-  'Passenger Ship',
-  'Fishing Vessel',
-  'Other',
+  "Container Ship",
+  "Bulk Carrier",
+  "Tanker",
+  "Cargo Ship",
+  "Passenger Ship",
+  "Fishing Vessel",
+  "Other",
 ];
 
 const engineTypes = [
-  'Diesel Engine',
-  'Steam Turbine',
-  'Gas Turbine',
-  'Nuclear Propulsion',
-  'Hybrid',
-  'Electric',
-  'Other',
+  "Diesel Engine",
+  "Steam Turbine",
+  "Gas Turbine",
+  "Nuclear Propulsion",
+  "Hybrid",
+  "Electric",
+  "Other",
 ];
 
 export default function ShipRegistration() {
   const [formData, setFormData] = useState<FormShipReigstionData>({
-    shipName: '',
-    ownerWalletAddress: '',
-    shipCode: '',
-    registrationCountry: '',
-    shipType: '',
-    length: '',
-    width: '',
-    capacity: '',
-    engineType: '',
+    shipName: "",
+    ownerWalletAddress: "",
+    shipCode: "",
+    registrationCountry: "",
+    shipType: "",
+    length: "",
+    width: "",
+    capacity: "",
+    engineType: "",
     isActive: true,
   });
 
@@ -95,7 +95,7 @@ export default function ShipRegistration() {
         engineType: formData.engineType,
       });
     } catch (error) {
-      console.error('Error registering ship:', error);
+      console.error("Error registering ship:", error);
     }
   };
 
@@ -103,61 +103,61 @@ export default function ShipRegistration() {
   useEffect(() => {
     if (isPending) {
       toast({
-        title: 'Processing Registration',
-        description: 'Your ship registration is being submitted...',
-        variant: 'default',
+        title: "Processing Registration",
+        description: "Your ship registration is being submitted...",
+        variant: "default",
       });
     }
 
     if (isConfirming) {
       toast({
-        title: 'Confirming Transaction',
-        description: 'Waiting for blockchain confirmation...',
-        variant: 'default',
+        title: "Confirming Transaction",
+        description: "Waiting for blockchain confirmation...",
+        variant: "default",
       });
     }
 
     if (isConfirmed) {
       // Reset form sau khi đăng ký thành công
       setFormData({
-        shipName: '',
-        ownerWalletAddress: '',
-        shipCode: '',
-        registrationCountry: '',
-        shipType: '',
-        length: '',
-        width: '',
-        capacity: '',
-        engineType: '',
+        shipName: "",
+        ownerWalletAddress: "",
+        shipCode: "",
+        registrationCountry: "",
+        shipType: "",
+        length: "",
+        width: "",
+        capacity: "",
+        engineType: "",
         isActive: true,
       });
 
       toast({
-        title: 'Ship Registered Successfully',
-        description: 'Your ship has been registered on the blockchain.',
-        className: 'toast-success',
+        title: "Ship Registered Successfully",
+        description: "Your ship has been registered on the blockchain.",
+        className: "toast-success",
       });
     }
 
     if (isError) {
       toast({
-        title: 'Registration Failed',
-        description: 'Unable to register ship. Please try again.',
-        variant: 'destructive',
+        title: "Registration Failed",
+        description: "Unable to register ship. Please try again.",
+        variant: "destructive",
       });
     }
   }, [isPending, isConfirming, isConfirmed, isError]);
 
   const handleSearchShipCode = () => {
     toast({
-      title: 'Search Ship Code',
-      description: 'Feature under development...',
+      title: "Search Ship Code",
+      description: "Feature under development...",
     });
   };
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <AnimatedBackground />
 
         <motion.div
@@ -166,7 +166,7 @@ export default function ShipRegistration() {
           transition={{ duration: 0.5 }}
           className="w-full max-w-4xl"
         >
-          <Card className="shadow-2xl rounded-2xl border border-gray-100 overflow-hidden">
+          <Card className="shadow-2xl rounded-2xl  overflow-hidden">
             <CardHeader className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6">
               <div className="flex items-center space-x-4">
                 <Anchor className="w-8 h-8 text-white" />
@@ -184,14 +184,14 @@ export default function ShipRegistration() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Basic Information */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-4 flex items-center">
+                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-100 border-b pb-2 mb-4 flex items-center">
                     <Info className="mr-2 text-blue-500" /> Basic Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label
                         htmlFor="shipName"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Ship Name
                       </Label>
@@ -208,7 +208,7 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="ownerWalletAddress"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Owner Wallet Address
                       </Label>
@@ -229,7 +229,7 @@ export default function ShipRegistration() {
                       <div className="flex items-center justify-between">
                         <Label
                           htmlFor="shipCode"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                         >
                           Ship Code
                         </Label>
@@ -266,7 +266,7 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="registrationCountry"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Registration Country
                       </Label>
@@ -284,7 +284,7 @@ export default function ShipRegistration() {
 
                 {/* Technical Specifications */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-700 border-b pb-2 mb-4 flex items-center">
+                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-100 border-b pb-2 mb-4 flex items-center">
                     <Info className="mr-2 text-blue-500" /> Technical
                     Specifications
                   </h3>
@@ -292,14 +292,14 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="shipType"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Ship Type
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleChange({
-                            target: { name: 'shipType', value },
+                            target: { name: "shipType", value },
                           })
                         }
                       >
@@ -319,14 +319,14 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="engineType"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Engine Type
                       </Label>
                       <Select
                         onValueChange={(value) =>
                           handleChange({
-                            target: { name: 'engineType', value },
+                            target: { name: "engineType", value },
                           })
                         }
                       >
@@ -348,7 +348,7 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="length"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Length (m)
                       </Label>
@@ -366,7 +366,7 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="width"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Width (m)
                       </Label>
@@ -384,7 +384,7 @@ export default function ShipRegistration() {
                     <div className="space-y-2">
                       <Label
                         htmlFor="capacity"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-gray-700 dark:text-gray-100"
                       >
                         Capacity (tons)
                       </Label>
@@ -413,11 +413,11 @@ export default function ShipRegistration() {
                       <div className="flex items-center justify-center">
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                         {isPending
-                          ? 'Submitting Transaction...'
-                          : 'Confirming on Blockchain...'}
+                          ? "Submitting Transaction..."
+                          : "Confirming on Blockchain..."}
                       </div>
                     ) : (
-                      'Register Ship'
+                      "Register Ship"
                     )}
                   </Button>
                 </div>
