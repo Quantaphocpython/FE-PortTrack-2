@@ -21,7 +21,7 @@ const features = [
     icon: Anchor,
     title: "Port Management Integration",
     description:
-      "Seamless integration with port authorities for efficient documentation and clearance processes.",
+      "Seamless integration with port authorities for efficient documentation.",
   },
   {
     icon: BarChart,
