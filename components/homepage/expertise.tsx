@@ -60,18 +60,20 @@ export function Expertise() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="text-sm font-semibold text-blue-600 uppercase tracking-wider">
+              <span className="text-sm font-semibold text-blue-600 dark:text-blue-500 uppercase tracking-wider">
                 OUR PLATFORM
               </span>
-              <h2 className="text-3xl font-bold mt-2">
+              <h2 className="text-3xl font-bold mt-2 text-gray-900 dark:text-gray-800">
                 Transparency & Trust in{" "}
-                <span className="text-orange-500">MARITIME JOURNEYS</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600">
+                  MARITIME JOURNEYS
+                </span>
               </h2>
             </motion.div>
 
             <motion.p
               variants={itemVariants}
-              className="text-gray-600 mb-8 max-w-xl"
+              className="text-gray-700 dark:text-gray-600 mb-8 max-w-xl"
             >
               Our platform leverages blockchain to create a transparent and
               secure ecosystem for maritime operations, ensuring trust between
@@ -86,19 +88,35 @@ export function Expertise() {
                 <motion.div
                   key={service.title}
                   variants={itemVariants}
-                  className="flex items-start space-x-4 p-4 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-start space-x-4 p-4 rounded-lg border border-gray-200 hover:border-gray-300 dark:border-gray-300 dark:hover:border-gray-400 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex-shrink-0">
                     <service.icon className="w-6 h-6 text-orange-500" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">{service.title}</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="font-semibold mb-1 text-gray-900 dark:text-gray-800">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-500">
                       {service.description}
                     </p>
                   </div>
                 </motion.div>
               ))}
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-8">
+              <div className="flex items-center space-x-2">
+                <span className="text-gray-700 dark:text-gray-600">
+                  Have any questions?
+                </span>
+                <a
+                  href="tel:+1234567890"
+                  className="text-blue-600 dark:text-blue-700 font-semibold hover:text-blue-700 dark:hover:text-blue-800 transition-colors"
+                >
+                  +123 456 7890
+                </a>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -109,22 +127,22 @@ export function Expertise() {
             viewport={{ once: true }}
             className="relative h-[600px]"
           >
-            <div className="absolute right-0 top-0 w-4/5 h-4/5">
+            <div className="absolute right-0 top-0 w-4/5 h-4/5 rounded-lg overflow-hidden shadow-lg">
               <Image
                 src="https://app.all-forward.com/upload/BlogsImages/00000/00000023_tk2cwvz66vjou.jpg"
                 alt="Blockchain Maritime"
-                width={500}
-                height={400}
-                className="rounded-lg object-cover w-full h-full"
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-300 hover:scale-105"
               />
             </div>
-            <div className="absolute left-0 bottom-0 w-3/5 h-3/5">
+            <div className="absolute left-0 bottom-0 w-3/5 h-3/5 rounded-lg overflow-hidden shadow-xl">
               <Image
                 src="https://img.freepik.com/premium-photo/big-transport-ship-with-containers-with-goods-open-sea_605905-10901.jpg?w=1060"
                 alt="Maritime Transparency"
-                width={400}
-                height={300}
-                className="rounded-lg object-cover w-full h-full shadow-xl"
+                layout="fill"
+                objectFit="cover"
+                className="transition-transform duration-300 hover:scale-105"
               />
             </div>
           </motion.div>

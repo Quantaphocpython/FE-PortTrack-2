@@ -18,7 +18,7 @@ export function ParallaxSection() {
   return (
     <section ref={ref} className="relative h-[60vh] overflow-hidden">
       <motion.div
-        className="absolute inset-0 object-contain bg-no-repeat bg-[url('https://media-private.canva.com/w--q8/MAFK39w--q8/1/s2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20250101%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250101T022554Z&X-Amz-Expires=31765&X-Amz-Signature=f7d821cfbd4b6c1cbf2c8c524ecbec4a5cba336552b2736d093022bef8fb0235&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Wed%2C%2001%20Jan%202025%2011%3A15%3A19%20GMT')] bg-center"
+        className="absolute inset-0 object-contain bg-no-repeat bg-[url('https://media-private.canva.com/w--q8/MAFK39w--q8/1/s2.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJWF6QO3UH4PAAJ6Q%2F20250110%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250110T022554Z&X-Amz-Expires=67765&X-Amz-Signature=c7f49aab49bd53a2907dd2e881c610bbffaa5c10c277a9bb3d29ffab2a98272a&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Fri%2C%2010%20Jan%202025%2021%3A15%3A19%20GMT')] bg-center"
         style={{ y }}
       />
       <div className="absolute inset-0 bg-black/30" />

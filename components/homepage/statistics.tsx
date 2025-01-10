@@ -1,37 +1,37 @@
-'use client';
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Clock, Globe2, HeadphonesIcon, Ship } from 'lucide-react';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Clock, Globe2, HeadphonesIcon, Ship } from "lucide-react";
+import { useRef } from "react";
 
 const stats = [
   {
     icon: Ship,
     value: 12,
-    unit: 'Million',
-    label: 'Containers Shipped Annually',
-    color: 'bg-blue-500',
+    unit: "Million",
+    label: "Containers Shipped Annually",
+    color: "bg-blue-500",
   },
   {
     icon: Globe2,
     value: 150,
-    unit: '+',
-    label: 'Countries Served',
-    color: 'bg-green-500',
+    unit: "+",
+    label: "Countries Served",
+    color: "bg-green-500",
   },
   {
     icon: Clock,
     value: 99.9,
-    unit: '%',
-    label: 'On-Time Delivery Rate',
-    color: 'bg-orange-500',
+    unit: "%",
+    label: "On-Time Delivery Rate",
+    color: "bg-orange-500",
   },
   {
     icon: HeadphonesIcon,
     value: 24,
-    unit: '/7',
-    label: 'Customer Support',
-    color: 'bg-purple-500',
+    unit: "/7",
+    label: "Customer Support",
+    color: "bg-purple-500",
   },
 ];
 
@@ -39,7 +39,7 @@ export function Statistics() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start end', 'end start'],
+    offset: ["start end", "end start"],
   });
 
   return (
@@ -59,7 +59,7 @@ export function Statistics() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold">Our Global Impact</h2>
+          <h2 className="text-3xl font-bold text-black">Our Global Impact</h2>
           <p className="text-gray-600 mt-2">
             Delivering excellence across the world
           </p>
@@ -81,7 +81,7 @@ export function Statistics() {
                   <stat.icon className="w-6 h-6 text-white" />
                 </div>
                 <motion.div
-                  className="text-4xl font-bold mb-2 tabular-nums"
+                  className="text-4xl font-bold mb-2 tabular-nums text-black"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -91,9 +91,9 @@ export function Statistics() {
                     to={stat.value}
                     scrollYProgress={scrollYProgress}
                   />
-                  <span className="text-3xl ml-1">{stat.unit}</span>
+                  <span className="text-3xl ml-1 text-black">{stat.unit}</span>
                 </motion.div>
-                <p className="text-gray-600">{stat.label}</p>
+                <p className="text-gray-600 ">{stat.label}</p>
               </div>
             </motion.div>
           ))}

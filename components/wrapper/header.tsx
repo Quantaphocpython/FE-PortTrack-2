@@ -1,68 +1,89 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Globe, Menu, Anchor, Ship, Box, Navigation } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Menu, Anchor, Ship, Box, Navigation } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
-import { CustomConnectButton } from '../wallet/CustomConnectWallet';
-import Logo from '../common/logo';
+} from "@/components/ui/dropdown-menu";
+import { CustomConnectButton } from "../wallet/CustomConnectWallet";
+import Logo from "../common/logo";
 
 const oceanServices = [
   {
-    title: 'Journey Recording',
+    title: "Journey Recording",
     description:
-      'Record and monitor vessel journeys with blockchain technology',
+      "Record and monitor vessel journeys with blockchain technology",
     icon: Navigation,
-    href: '/journey-recording',
+    href: "/journey-recording",
   },
   {
-    title: 'Journey Tracking',
-    description: 'Real-time vessel tracking and route optimization',
+    title: "Journey Tracking",
+    description: "Real-time vessel tracking and route optimization",
     icon: Ship,
-    href: '/journey-tracking',
+    href: "/journey-tracking",
   },
   {
-    title: 'Port Management',
-    description: 'View details of international container terminals',
+    title: "Port Management",
+    description: "View details of international container terminals",
     icon: Anchor,
-    href: '/port-management',
+    href: "/port-management",
   },
   {
-    title: 'Register New Ship',
-    description: 'Add and manage your vessels in our network',
+    title: "Register New Ship",
+    description: "Add and manage your vessels in our network",
     icon: Box,
-    href: '/register-ship',
+    href: "/register-ship",
   },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
-  if (typeof window !== 'undefined') {
-    window.addEventListener('scroll', () => {
+  useEffect(() => {
+    const handleScroll = () => {
       setIsScrolled(window.scrollY > 80);
-    });
-  }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleDropdownSelect = () => {
     setDropdownOpen(false);
   };
 
+  const getBackgroundColor = () => {
+    if (isHomePage) {
+      return isScrolled
+        ? "bg-white/90 backdrop-blur-md shadow-lg"
+        : "bg-transparent";
+    } else {
+      return "bg-gray-900"; // Dark background for non-home pages
+    }
+  };
+
+  const getTextColor = () => {
+    if (isHomePage) {
+      return isScrolled ? "text-gray-600" : "text-white";
+    } else {
+      return "text-white"; // White text for dark background
+    }
+  };
+
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${getBackgroundColor()}`}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between h-20">
@@ -74,10 +95,10 @@ export default function Header() {
               transition={{ duration: 0.5 }}
             >
               <div className="flex items-center">
-                <Logo isScroll={isScrolled} />
+                <Logo isScroll={isScrolled || !isHomePage} />
                 <span
                   className={`text-2xl font-bold ${
-                    isScrolled ? 'text-blue-600' : 'text-white'
+                    isScrolled || !isHomePage ? "text-blue-600" : "text-white"
                   }`}
                 >
                   Transocean
@@ -90,9 +111,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <Link
               href="/about-us"
-              className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                isScrolled ? 'text-gray-600' : 'text-white'
-              }`}
+              className={`text-sm font-medium transition-colors hover:text-blue-400 ${getTextColor()}`}
             >
               About Us
             </Link>
@@ -103,9 +122,7 @@ export default function Header() {
               modal={false}
             >
               <DropdownMenuTrigger
-                className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  isScrolled ? 'text-gray-600' : 'text-white'
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-blue-400 ${getTextColor()}`}
               >
                 Services
               </DropdownMenuTrigger>
@@ -129,7 +146,7 @@ export default function Header() {
                               <service.icon className="w-5 h-5 text-blue-500 group-hover:text-blue-600 transition-colors" />
                             </div>
                             <div className="flex-1 space-y-1">
-                              <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                              <div className="font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 transition-colors">
                                 {service.title}
                               </div>
                               <div className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors">
@@ -145,16 +162,14 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {['Ship', 'Press & News', 'Contacts'].map((item) => (
+            {["Ship", "Press & News", "Contacts"].map((item) => (
               <Link
                 key={item}
                 href={`/${item
                   .toLowerCase()
-                  .replace(/ & /g, '-')
-                  .replace(/ /g, '-')}`}
-                className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                  isScrolled ? 'text-gray-600' : 'text-white'
-                }`}
+                  .replace(/ & /g, "-")
+                  .replace(/ /g, "-")}`}
+                className={`text-sm font-medium transition-colors hover:text-blue-400 ${getTextColor()}`}
               >
                 {item}
               </Link>
@@ -163,42 +178,14 @@ export default function Header() {
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-6">
-            {/* <DropdownMenu modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={isScrolled ? 'text-gray-600' : 'text-white'}
-                >
-                  <Globe className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>Tiếng Việt</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu> */}
-
-            {/* <Button
-              className={`${
-                isScrolled
-                  ? 'bg-blue-600 text-white hover:bg-blue-700'
-                  : 'bg-white/10 text-white hover:bg-white/20'
-              } backdrop-blur-sm transition-all duration-300`}
-            >
-              Schedule Transport
-            </Button> */}
-
-            <CustomConnectButton isScrolled={isScrolled} />
+            <CustomConnectButton isScrolled={isScrolled || !isHomePage} />
           </div>
 
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className={`md:hidden ${
-              isScrolled ? 'text-gray-600' : 'text-white'
-            }`}
+            className={`md:hidden ${getTextColor()}`}
           >
             <Menu className="h-6 w-6" />
           </Button>
